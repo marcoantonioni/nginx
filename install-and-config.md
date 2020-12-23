@@ -1,18 +1,24 @@
 # Installation and configuration in RHEL 8.x
 ```bash
 sudo yum install -y nginx
+```
 
-# setup firewall
+setup firewall
+```bash
 sudo firewall-cmd --zone=public --permanent --add-service=http
 sudo firewall-cmd --zone=public --permanent --add-service=https
 sudo firewall-cmd --reload
+```
 
-# key and crt self signed
+key and crt self signed
+```bash
 sudo mkdir -p /etc/pki/nginx/private/ 
 sudo openssl genrsa -out /etc/pki/nginx/private/rh8.marco.net.server.key
 sudo openssl req -new -x509 -nodes -days 3650 -key /etc/pki/nginx/private/rh8.marco.net.server.key -out /etc/pki/nginx/rh8.marco.net.server.crt -subj="/CN=rh8.marco.net"
+```
 
-# update params and enable SSL section
+update params and enable SSL section
+```bash
 sudo cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.original
 sudo vi /etc/nginx/nginx.conf
 ```
